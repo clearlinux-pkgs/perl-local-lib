@@ -4,7 +4,7 @@
 #
 Name     : perl-local-lib
 Version  : 2.000024
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocal-lib-perl/liblocal-lib-perl_2.000024-1.debian.tar.xz
