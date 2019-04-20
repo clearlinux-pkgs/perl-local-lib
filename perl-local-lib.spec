@@ -80,10 +80,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1/POD2/DE/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.28.1/POD2/PT_BR/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.28.1/lib/core/only.pm
-/usr/lib/perl5/vendor_perl/5.28.1/local/lib.pm
+/usr/lib/perl5/vendor_perl/5.28.2/POD2/DE/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.28.2/POD2/PT_BR/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.28.2/lib/core/only.pm
+/usr/lib/perl5/vendor_perl/5.28.2/local/lib.pm
 
 %files dev
 %defattr(-,root,root,-)
