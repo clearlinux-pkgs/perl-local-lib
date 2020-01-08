@@ -4,7 +4,7 @@
 #
 Name     : perl-local-lib
 Version  : 2.000024
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocal-lib-perl/liblocal-lib-perl_2.000024-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'create and use a local lib/ for perl modules with PERL5LIB'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-local-lib-license = %{version}-%{release}
+Requires: perl-local-lib-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -24,6 +25,7 @@ In code -
 Summary: dev components for the perl-local-lib package.
 Group: Development
 Provides: perl-local-lib-devel = %{version}-%{release}
+Requires: perl-local-lib = %{version}-%{release}
 
 %description dev
 dev components for the perl-local-lib package.
@@ -37,18 +39,28 @@ Group: Default
 license components for the perl-local-lib package.
 
 
+%package perl
+Summary: perl components for the perl-local-lib package.
+Group: Default
+Requires: perl-local-lib = %{version}-%{release}
+
+%description perl
+perl components for the perl-local-lib package.
+
+
 %prep
 %setup -q -n local-lib-2.000024
-cd ..
-%setup -q -T -D -n local-lib-2.000024 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/liblocal-lib-perl_2.000024-1.debian.tar.xz
+cd %{_builddir}/local-lib-2.000024
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/local-lib-2.000024/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/local-lib-2.000024/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -58,7 +70,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -67,7 +79,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-local-lib
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-local-lib/LICENSE
+cp %{_builddir}/local-lib-2.000024/LICENSE %{buildroot}/usr/share/package-licenses/perl-local-lib/7696b9f77cfb3794bd4a985b4ce7f623175c9af9
+cp %{_builddir}/local-lib-2.000024/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-local-lib/408ffb40b85e4ec2949cef98c4c65d932250214f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -80,10 +93,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/POD2/DE/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.28.2/POD2/PT_BR/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.28.2/lib/core/only.pm
-/usr/lib/perl5/vendor_perl/5.28.2/local/lib.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -94,4 +103,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-local-lib/LICENSE
+/usr/share/package-licenses/perl-local-lib/408ffb40b85e4ec2949cef98c4c65d932250214f
+/usr/share/package-licenses/perl-local-lib/7696b9f77cfb3794bd4a985b4ce7f623175c9af9
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/POD2/DE/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.30.1/POD2/PT_BR/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.30.1/lib/core/only.pm
+/usr/lib/perl5/vendor_perl/5.30.1/local/lib.pm
