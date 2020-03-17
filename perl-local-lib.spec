@@ -4,7 +4,7 @@
 #
 Name     : perl-local-lib
 Version  : 2.000024
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000024.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocal-lib-perl/liblocal-lib-perl_2.000024-1.debian.tar.xz
@@ -79,8 +79,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-local-lib
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-local-lib/408ffb40b85e4ec2949cef98c4c65d932250214f
 cp %{_builddir}/local-lib-2.000024/LICENSE %{buildroot}/usr/share/package-licenses/perl-local-lib/7696b9f77cfb3794bd4a985b4ce7f623175c9af9
-cp %{_builddir}/local-lib-2.000024/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-local-lib/408ffb40b85e4ec2949cef98c4c65d932250214f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -108,7 +108,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/POD2/DE/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.30.1/POD2/PT_BR/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.30.1/lib/core/only.pm
-/usr/lib/perl5/vendor_perl/5.30.1/local/lib.pm
+/usr/lib/perl5/vendor_perl/5.30.2/POD2/DE/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.30.2/POD2/PT_BR/local/lib.pod
+/usr/lib/perl5/vendor_perl/5.30.2/lib/core/only.pm
+/usr/lib/perl5/vendor_perl/5.30.2/local/lib.pm
