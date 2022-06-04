@@ -4,7 +4,7 @@
 #
 Name     : perl-local-lib
 Version  : 2.000029
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000029.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/H/HA/HAARG/local-lib-2.000029.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblocal-lib-perl/liblocal-lib-perl_2.000024-1.debian.tar.xz
@@ -108,7 +108,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/POD2/DE/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.34.0/POD2/PT_BR/local/lib.pod
-/usr/lib/perl5/vendor_perl/5.34.0/lib/core/only.pm
-/usr/lib/perl5/vendor_perl/5.34.0/local/lib.pm
+/usr/lib/perl5/*
